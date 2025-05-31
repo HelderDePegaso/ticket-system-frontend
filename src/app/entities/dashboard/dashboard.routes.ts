@@ -13,6 +13,13 @@ export const routes: Route[] = [
             {
                 path: 'user',
                 loadChildren: ()  => import ('../../features/user/user.route').then((m)=> m.routes)
+            } 
+
+            ,
+
+            {
+                path: 'ticket',
+                loadChildren: () => import('../auth/auth.routes').then((m)=>  m.routes )
             }
         ]
     }
