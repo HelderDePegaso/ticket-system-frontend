@@ -16,6 +16,11 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
+    "paths": {
+      "super-angular-lib": [
+        "./dist/super-angular-lib"
+      ]
+    },
     "module": "ES2022"
   },
   "angularCompilerOptions": {
