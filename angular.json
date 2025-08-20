@@ -85,9 +85,43 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "public/materials-dashboard/css/material-dashboard.css"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "super-angular-lib": {
+      "projectType": "library",
+      "root": "projects/super-angular-lib",
+      "sourceRoot": "projects/super-angular-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/super-angular-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/super-angular-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/super-angular-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/super-angular-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         }
       }
