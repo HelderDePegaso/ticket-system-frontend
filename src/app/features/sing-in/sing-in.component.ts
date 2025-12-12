@@ -39,7 +39,7 @@ export class SingInComponent {
 
     try {
       const { email, password } = this.form.value;
-      const response = await this.authHttp.login({ email, password } as LoginData);
+      const response = await this.authHttp.login({ logon: email, password } as LoginData);
       console.log('Login realizado com sucesso', response);
       // Redirecionar ou guardar token
     } catch (error: any) {

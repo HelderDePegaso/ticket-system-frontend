@@ -18,5 +18,11 @@ export const routes: Routes = [
     {
         path: 'account/signin',
         component: SingInComponent
+    },
+
+    {
+        path: '',
+        redirectTo: 'account/signin',
+        pathMatch: 'full'
     }
 ];
