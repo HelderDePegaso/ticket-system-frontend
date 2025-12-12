@@ -1,5 +1,5 @@
 import { Route } from '@angular/router'
-import { TicketComponent } from './component/ticket/ticket.component'
+import { TicketComponent } from './ticket/ticket.component'
 
 
 

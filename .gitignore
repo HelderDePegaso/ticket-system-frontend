@@ -44,7 +44,8 @@ Thumbs.db
 
 # External 
 public/materials-dashboard/img
-public/materials-dashboard/scss
+
+
 public/materials-dashboard/js
 public/materials-dashboard/fonts
-
+public/materials-dashboard/scss

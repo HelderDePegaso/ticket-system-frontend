@@ -23,13 +23,23 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "assets"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "public/materials-dashboard/css/material-dashboard.css",
+              "public/materials-dashboard/scss/material-dashboard.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "public/materials-dashboard/js/material-dashboard.min.js", 
+              "public/materials-dashboard/js/core/popper.min.js",
+              "public/materials-dashboard/js/core/bootstrap.min.js",
+              "public/materials-dashboard/js/plugins/chartjs.min.js",
+              "public/materials-dashboard/js/plugins/perfect-scrollbar.min.js",
+              "public/materials-dashboard/js/plugins/smooth-scrollbar.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -81,14 +91,24 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "assets"
               }
             ],
             "styles": [
               "src/styles.css",
-              "public/materials-dashboard/css/material-dashboard.css"
+              "public/materials-dashboard/css/material-dashboard.css",
+              "public/materials-dashboard/scss/material-dashboard.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "public/materials-dashboard/js/core/popper.min.js",
+              "public/materials-dashboard/js/core/bootstrap.min.js",
+              "public/materials-dashboard/js/material-dashboard.min.js",
+              "public/materials-dashboard/js/plugins/chartjs.min.js",
+              "public/materials-dashboard/js/plugins/perfect-scrollbar.min.js",
+              "public/materials-dashboard/js/plugins/smooth-scrollbar.min.js"
+
+            ]
           }
         }
       }

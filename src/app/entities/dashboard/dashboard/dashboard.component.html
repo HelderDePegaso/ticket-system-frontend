@@ -1,7 +1,11 @@
-<div class="d-flex flex-row">
-    <app-menu></app-menu>
+<div class="g-sidenav-show bg-gray-100 position-absolute top-0 w-100 h-100">
+    <app-menu  class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2  bg-white my-2"  
+    id="|> sidenav-main" ></app-menu>
 
-    <div class="d-flex">
-        <router-outlet></router-outlet>
-    </div>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <app-navbar></app-navbar>
+        <div class="container-fluid py-2">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
 </div>

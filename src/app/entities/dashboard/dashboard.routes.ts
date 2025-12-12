@@ -3,24 +3,27 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 
 
 export const routes: Route[] = [
-    
+
     {
         path: '',
-        component: DashboardComponent  ,
+        component: DashboardComponent,
         children: [
             // For users issues
 
             {
                 path: 'user',
-                loadChildren: ()  => import ('../../features/user/user.route').then((m)=> m.routes)
-            } 
+                loadChildren: () => import('../../features/user/user.route').then((m) => m.routes)
+            }
 
             ,
 
             {
                 path: 'ticket',
-                loadChildren: () => import('../auth/auth.routes').then((m)=>  m.routes )
+                loadChildren: () => import('../../features/ticket/ticket.routes').then((m) => m.routes)
             }
+
         ]
-    }
+    },
+
+    
 ]
