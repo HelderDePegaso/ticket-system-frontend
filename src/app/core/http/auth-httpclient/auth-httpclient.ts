@@ -23,11 +23,15 @@ export class AuthHttpClient {
     * O loginData já foi validado pelos Angular Forms.
     */
     login(loginData: LoginData) {
-        return firstValueFrom(this.http.makePost<ResponseObject>("/login", loginData));
+        const response = firstValueFrom(this.http.makePost<ResponseObject>("auth/login", loginData));
+
+        console.log(response)
+
+        return response
     }
 
     signout() {
-        return firstValueFrom(this.http.makeDelete<ResponseObject>("/logout"));
+        return firstValueFrom(this.http.makeGet<ResponseObject>("auth/logout"));
     }
 
 

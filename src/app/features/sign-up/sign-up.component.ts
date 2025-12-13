@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
     this.form = this.fb.group({
       name: ['' , [Validators.required , Validators.minLength(3)]]  ,
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(3)]], // TODO minLength deve ser 6 e com mais critérios de senha forte
       acceptTerms: [false, [Validators.requiredTrue]]  
     })
 
@@ -53,7 +53,7 @@ export class SignUpComponent implements OnInit {
     const { name, email, password } = this.form.value;
 
     try {
-      const response = await this.authHttp.signup({ name, email, password } as LoginData);
+      const response = await this.authHttp.signup({ name, email, password } as any);
       console.log('Usuário cadastrado com sucesso', response);
       // Redirecionar, limpar form ou mostrar mensagem
     } catch (error: any) {
