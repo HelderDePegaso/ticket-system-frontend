@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuComponent } from "../components/menu/menu.component";
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "../components/navbar/navbar.component";
 
 @Component({
@@ -9,6 +9,11 @@ import { NavbarComponent } from "../components/navbar/navbar.component";
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
+  constructor(private router: Router , private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.router.navigate(['dash'], {relativeTo: this.activatedRoute})
+  }
 }
