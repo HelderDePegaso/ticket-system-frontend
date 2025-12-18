@@ -12,13 +12,29 @@ import { firstValueFrom } from "rxjs";
 export class UserHttpclient {
 
     private http: RootHttpClient = inject(RootHttpClient)
+  
 
     profile() {
-        return firstValueFrom(this.http.makeGet<ResponseObject>("/profile"));
+        return firstValueFrom(this.http.makeGet<ResponseObject>("users/mydata"));
     }
 
     updateProfile(data: any) {
         return firstValueFrom(this.http.makePut<ResponseObject>("/profile", data));
+    }
+
+    getMyAreas() {
+        return firstValueFrom(this.http.makeGet<ResponseObject>("users/my-areas"))
+    }
+
+    
+    /**
+     * getNotifications 
+     * */
+
+    
+    
+    getNotifications() {
+        return [1]
     }
 
     

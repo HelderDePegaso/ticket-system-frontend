@@ -7,13 +7,14 @@ const publicUrls = ['auth/login', 'auth/register', 'auth/refresh', 'auth/logout'
 
 
 export const tokenInterceptor: HttpInterceptorFn = (req: any , next: any) => {
-    const token = localStorage.getItem('token'); // ou de algum service
+    const token = sessionStorage.getItem('token'); // ou de algum service
     console.log("Testando")
     debugger
     if (token && !isPublicUrl(req.url)) {
       const cloned = req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${token}`)
+        headers: req.headers.set('authorization', `Bearer ${token}`)
       });
+      return next(cloned)
     }
 
     return next(req);
