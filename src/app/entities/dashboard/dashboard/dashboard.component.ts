@@ -16,20 +16,56 @@ export class DashboardComponent implements OnInit {
   userHttpClient = inject(UserHttpclient)
   userContextService = inject(UserContextService)
 
-  constructor(private router: Router , private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  async ngOnInit():   Promise<void> {
+  ngOnInit() {
     // Carregar dados necessários para o usuário e depois redirecinar para dash
-    const [ profile, myAreas, notifications ] = await Promise.all([
-      this.userHttpClient.profile(),
-      this.userHttpClient.getMyAreas(), 
-      this.userHttpClient.getNotifications()
-    ])
+    this.fetchInitialData().then(data => {
+      const [profile, myAreas, notifications] = data
+      debugger
+      this.userContextService.setProfile(profile)
+      this.userContextService.setNotifications(notifications)
+      this.userContextService.setAreas(myAreas as any)
 
-    debugger
-    this.userContextService.setProfile(profile)
-    this.userContextService.setNotifications(notifications)
-    this.userContextService.setAreas(myAreas as any)
-    this.router.navigate(['dash'], {relativeTo: this.activatedRoute})
+      sessionStorage.setItem('pna', JSON.stringify(data))
+
+
+      
+    }).catch(error => {
+      console.error(error)
+      // TODO Usar o toast do Material Dashboar para informar que certos dados não poderam ser carregados
+    }).finally(() => {
+      console.log('Dashboard carregado com sucesso! Redirecionando para dash ')
+      if (this.router.url === '/main') {
+        this.router.navigate(['/main/dash'])
+      }
+    })
+
+
+   
   }
+
+  async fetchInitialData(): Promise<any[]> {
+    try {
+      const stored = sessionStorage.getItem('pna');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed?.length) return parsed;
+      }
+
+      const data = await Promise.all([
+        this.userHttpClient.profile(),
+        this.userHttpClient.getMyAreas(),
+        this.userHttpClient.getNotifications()
+      ]);
+
+      sessionStorage.setItem('pna', JSON.stringify(data));
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+
 }

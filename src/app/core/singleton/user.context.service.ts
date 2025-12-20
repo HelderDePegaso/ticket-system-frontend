@@ -12,10 +12,16 @@ export class UserContextService {
   private readonly notificationsSubject =
     new BehaviorSubject<Notification[]>([]);
 
-  // ── non-reactive state ──────────────────────────
-  private areas: any[] = [];
+  private readonly areasSubject =
+    new BehaviorSubject<any[]>([]);
 
-  // ── public read-only streams ────────────────────
+  
+  // ─── public read-only streams ────────────────────
+  readonly areas$: Observable<any[]> = 
+    this.areasSubject.asObservable();
+
+  
+
   readonly profile$: Observable<any | null> =
     this.profileSubject.asObservable();
 
@@ -32,26 +38,15 @@ export class UserContextService {
   }
 
   setAreas(areas: any[]): void {
-    this.areas = areas;
+    this.areasSubject.next(areas)  
   }
 
-  // ── snapshot reads ──────────────────────────────
-  getProfileSnapshot(): any | null {
-    return this.profileSubject.value;
-  }
-
-  getNotificationsSnapshot(): Notification[] {
-    return this.notificationsSubject.value;
-  }
-
-  getAreas(): any[] {
-    return this.areas;
-  }
+  
 
   // ── lifecycle helpers ───────────────────────────
   clear(): void {
     this.profileSubject.next(null);
     this.notificationsSubject.next([]);
-    this.areas = [];
+    this.areasSubject.next([]);
   }
 }

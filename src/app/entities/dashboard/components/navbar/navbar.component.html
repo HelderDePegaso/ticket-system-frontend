@@ -132,7 +132,29 @@
       <!-- End Toggle Button -->
     </div>
     <hr class="horizontal dark my-1">
-    <div class="card-body pt-sm-3 pt-0">
+    <div [style.overflowY]="overlayFixedPlugin ? 'overlay' : 'hidden'" class="card-body pt-sm-3 pt-0"   (mouseover)="doOverlayFixedPlugin()" (mouseout)="undoOverlayFixedPlugin()">
+      <!-- App Configuration -->
+      <div>
+        <h6 class="mb-0">Domain and Area</h6>
+      </div>
+
+      <div>
+      <!--div class="mb-3">
+        <label for="domainSelect" class="form-label">Domain</label>
+        <select class="form-select" id="domainSelect" aria-label="Default select example">
+          <option value="1">Domain 1</option>
+          <option value="2">Domain 2</option>
+          <option value="3">Domain 3</option>
+        </select>
+      </div-->
+      <div class="mb-3">
+        <label for="areaSelect" class="form-label">Area</label>
+        <select class="form-select" id="areaSelect" aria-label="Default select example">
+          <option *ngFor="let area of (areas$ | async)" value="1"> {{ area.name}} </option>
+        </select>
+      </div>
+      </div>
+
       <!-- Sidebar Backgrounds -->
       <div>
         <h6 class="mb-0">Sidebar Colors</h6>
