@@ -38,7 +38,12 @@
               "public/materials-dashboard/js/core/bootstrap.min.js",
               "public/materials-dashboard/js/plugins/chartjs.min.js",
               "public/materials-dashboard/js/plugins/perfect-scrollbar.min.js",
-              "public/materials-dashboard/js/plugins/smooth-scrollbar.min.js"
+              "public/materials-dashboard/js/plugins/smooth-scrollbar.min.js",
+              "public/materials-dashboard/js/plugins/bootstrap-notify.js",
+              "public/materials-dashboard/js/plugins/chartjs.min.js",
+              "public/materials-dashboard/js/plugins/Chart.extension.js",
+              "public/materials-dashboard/js/plugins/countup.min.js" ,
+              "public/materials-dashboard/js/plugins/world.js"
             ]
           },
           "configurations": {
