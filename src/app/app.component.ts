@@ -11,11 +11,20 @@ import { ScriptLoaderService } from './core/libs/script-loader';
 export class AppComponent {
   title = 'ticket-system-frontend';
 
-  constructor(private scriptLoader: ScriptLoaderService) { }  
+  constructor(private scriptLoader: ScriptLoaderService) { }
   async ngOnInit() {
     try {
       await this.scriptLoader.loadScript('https://buttons.github.io/buttons.js');
       console.log('Script carregado com sucesso!');
+
+      var win = navigator.platform.indexOf('Win') > -1;
+      if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+          damping: '0.5'
+        };
+
+        (window as any).Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+      }
     } catch (err) {
       console.error(err);
     }
