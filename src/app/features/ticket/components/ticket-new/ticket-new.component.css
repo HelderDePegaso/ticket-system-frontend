@@ -1,0 +1,42 @@
+.container-fluid {
+    margin-top: 4rem !important;
+}
+
+
+.slider-row {
+  display: flex;
+  flex-wrap: nowrap;           /* tudo em uma linha só */
+  gap: 1rem;                   /* espaço entre os cards */
+  overflow-x: auto;            /* scroll horizontal */
+  overflow-y: hidden;
+  scroll-behavior: smooth;     /* deslize suave */
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  padding-bottom: 10px;
+}
+
+/* Esconde a scrollbar (Chrome, Edge, Safari) */
+.slider-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Esconde a scrollbar (Firefox) */
+.slider-row {
+  scrollbar-width: none;
+}
+
+/* Cada item do slide */
+.slider-row > div {
+  flex: 0 0 auto;              /* impede quebra de linha */
+  min-width: 260px;            /* largura do card (ajuste se quiser) */
+}
+
+
+.slider-row {
+  cursor: grab;
+  user-select: none;
+}
+
+.slider-row.dragging {
+  cursor: grabbing;
+}
