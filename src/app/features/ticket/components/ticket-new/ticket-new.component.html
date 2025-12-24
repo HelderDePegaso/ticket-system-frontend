@@ -2,111 +2,75 @@
   <div class="card card-body mx-2 mx-md-2 mt-n6">
     <div class="row gx-4 mb-2">
       <div class="row">
-        <div _ngcontent-ng-c2522075359="" class="col-12">
-          <div _ngcontent-ng-c2522075359="" class="row slider-row dragging "  appHorizontalDragScrollDirective>
-            <div _ngcontent-ng-c2522075359="" class="col-md-3 col-3">
-              <div _ngcontent-ng-c2522075359="" class="card">
-                <div _ngcontent-ng-c2522075359="" class="card-header mx-4 p-3 text-center">
-                  <div _ngcontent-ng-c2522075359=""
+        <div  class="col-12">
+          <div  class="row slider-row dragging " appHorizontalDragScrollDirective>
+            <div  class="col-md-3 col-3" *ngFor="let area of areas$ | async">
+              <div [id]="'area-' + area.uuid"  class="card " (click)="areaClick(area)" >
+                <div  class="card-header mx-4 mt-1 p-3 text-center">
+                  <div 
                     class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg"><i
-                      _ngcontent-ng-c2522075359="" class="material-symbols-rounded opacity-10">account_balance</i></div>
+                       class="material-symbols-rounded opacity-10">account_balance</i></div>
                 </div>
-                <div _ngcontent-ng-c2522075359="" class="card-body pt-0 p-3 text-center">
-                  <h6 _ngcontent-ng-c2522075359="" class="text-center mb-0">Salary</h6><span
-                    _ngcontent-ng-c2522075359="" class="text-xs">Belong Interactive</span>
-                  <hr _ngcontent-ng-c2522075359="" class="horizontal dark my-3">
-                  <h5 _ngcontent-ng-c2522075359="" class="mb-0">+$2000</h5>
+                <div  class="card-body pt-0 p-3 text-center"> 
+                  <h6  class="text-center mb-0">{{area.abbrev}}</h6><span
+                     class="text-xs">{{area.name }}</span>
+                  <hr  class="horizontal dark my-3">
+                  <h5  class="mb-0 text-sm">As: {{area.function | titlecase}}</h5>
                 </div>
               </div>
             </div>
-            <div _ngcontent-ng-c2522075359="" class="col-md-3 col-3">
-              <div _ngcontent-ng-c2522075359="" class="card">
-                <div _ngcontent-ng-c2522075359="" class="card-header mx-4 p-3 text-center">
-                  <div _ngcontent-ng-c2522075359=""
-                    class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg"><i
-                      _ngcontent-ng-c2522075359=""
-                      class="material-symbols-rounded opacity-10">account_balance_wallet</i></div>
-                </div>
-                <div _ngcontent-ng-c2522075359="" class="card-body pt-0 p-3 text-center">
-                  <h6 _ngcontent-ng-c2522075359="" class="text-center mb-0">Paypal</h6><span
-                    _ngcontent-ng-c2522075359="" class="text-xs">Freelance Payment</span>
-                  <hr _ngcontent-ng-c2522075359="" class="horizontal dark my-3">
-                  <h5 _ngcontent-ng-c2522075359="" class="mb-0">$455.00</h5>
-                </div>
-              </div>
-            </div>
-            <div _ngcontent-ng-c2522075359="" class="col-md-3 col-3">
-              <div _ngcontent-ng-c2522075359="" class="card">
-                <div _ngcontent-ng-c2522075359="" class="card-header mx-4 p-3 text-center">
-                  <div _ngcontent-ng-c2522075359=""
-                    class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg"><i
-                      _ngcontent-ng-c2522075359=""
-                      class="material-symbols-rounded opacity-10">account_balance_wallet</i></div>
-                </div>
-                <div _ngcontent-ng-c2522075359="" class="card-body pt-0 p-3 text-center">
-                  <h6 _ngcontent-ng-c2522075359="" class="text-center mb-0">Paypal</h6><span
-                    _ngcontent-ng-c2522075359="" class="text-xs">Freelance Payment</span>
-                  <hr _ngcontent-ng-c2522075359="" class="horizontal dark my-3">
-                  <h5 _ngcontent-ng-c2522075359="" class="mb-0">$455.00</h5>
-                </div>
-              </div>
-            </div>
-            <div _ngcontent-ng-c2522075359="" class="col-md-3 col-3">
-              <div _ngcontent-ng-c2522075359="" class="card">
-                <div _ngcontent-ng-c2522075359="" class="card-header mx-4 p-3 text-center">
-                  <div _ngcontent-ng-c2522075359=""
-                    class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg"><i
-                      _ngcontent-ng-c2522075359=""
-                      class="material-symbols-rounded opacity-10">account_balance_wallet</i></div>
-                </div>
-                <div _ngcontent-ng-c2522075359="" class="card-body pt-0 p-3 text-center">
-                  <h6 _ngcontent-ng-c2522075359="" class="text-center mb-0">Paypal</h6><span
-                    _ngcontent-ng-c2522075359="" class="text-xs">Freelance Payment</span>
-                  <hr _ngcontent-ng-c2522075359="" class="horizontal dark my-3">
-                  <h5 _ngcontent-ng-c2522075359="" class="mb-0">$455.00</h5>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="mb-0">Corpo da requisição</h5>
-              </div>
-              <div class="card-body">
-                <form>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="title" class="form-label">Título</label>
-                        <input type="text" class="form-control" id="title" name="title" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="date" class="form-label">Data</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Corpo da requisição</h5>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-outline mb-3" 
+                    [class.is-filled]="form.get('title')?.value">
+                      <label for="title" class="form-label">Título</label>
+                      <input formControlName="title" type="text" class="form-control " id="title" name="title" required (focus)="onInputFocus($event)" (focusout)="onInputFocusOut($event)" >
+                      <br>
+                      <div *ngIf="form.get('title')?.touched && form.get('title')?.invalid" class="error-message-div">
+                        Título obrigatório e deve ter ao menos 6 caracteres.
                       </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="description" class="form-label">Descrição</label>
-                    <textarea class="form-control" id="description" name="description" rows="10" required></textarea>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-outline mb-3" [class.is-filled]="form.get('relatedDate')?.value"]>
+                      <label for="date" class="form-label">Related Date</label>
+                      <input formControlName="relatedDate" type="date" class="form-control" id="date" name="date" (focus)="onInputFocus($event)" (focusout)="onInputFocusOut($event)">
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="attachment" class="form-label">Anexo</label>
-                    <input type="file" class="form-control" id="attachment" name="attachment" accept=".pdf,.doc,.docx">
+                </div>
+                <div class="input-group input-group-outline mb-3" [class.is-filled]="form.get('description')?.value">
+                  <label for="description" class="form-label">Descrição</label>
+                  <textarea formControlName="description" class="form-control" id="description" name="description" rows="10" (focus)="onInputFocus($event)" (focusout)="onInputFocusOut($event)"></textarea>
+                  <br>
+                  <div *ngIf="form.get('description')?.touched && form.get('description')?.invalid" class="error-message-div">
+                    Descrição é obrigatória.
                   </div>
-                </form>
-              </div>
+                </div>
+                <div class="form-group  mb-3">
+                  <label for="attachment" class="form-label">Anexo</label>
+                  <input type="file" class="form-control" id="attachment" name="attachment" accept=".pdf,.doc,.docx">
+                </div>
+
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+                </div>
+              </form>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
-</div>

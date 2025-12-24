@@ -40,3 +40,36 @@
 .slider-row.dragging {
   cursor: grabbing;
 }
+
+
+
+/* Reforçando estilos perdidos */
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: #404040;
+    appearance: none;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 1px solid #d2d6da;
+    border-radius: 0.375rem;
+    transition: 0.2s ease;
+}
+
+
+input [type="date"]::-webkit-datetime-edit {
+  color: transparent;
+}
+
+
+.card .is-selected {
+  border: 2px solid #007bff;
+  border-color: transparent !important;
+  box-shadow: inset 1px 0 #e91e63,
+    inset -1px 0 #e91e63,
+    inset 0 -1px #e91e63;
+}
