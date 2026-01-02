@@ -5,6 +5,7 @@ import { NavbarComponent } from "../components/navbar/navbar.component";
 import { UserHttpclient } from '../../../core/http/user-httpclient/user-httpclient';
 import { UserContextService } from '../../../core/singleton/user.context.service';
 
+
 @Component({
   selector: 'app-dashboard',
   imports: [MenuComponent, RouterOutlet, NavbarComponent],
@@ -21,11 +22,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     // Carregar dados necessários para o usuário e depois redirecinar para dash
     this.fetchInitialData().then(data => {
-      const [profile, myAreas, notifications] = data
-      debugger
+      const [profile, /*myAreas,*/ notifications] = data
+      //debugger
       this.userContextService.setProfile(profile)
       this.userContextService.setNotifications(notifications)
-      this.userContextService.setAreas(myAreas as any)
+      this.userContextService.setAreas([] as any)
 
       sessionStorage.setItem('pna', JSON.stringify(data))
 
@@ -47,6 +48,7 @@ export class DashboardComponent implements OnInit {
 
   async fetchInitialData(): Promise<any[]> {
     try {
+      // TODO Mudar com buscas em idb / tanstackquery e esquecer o sessionStorage
       const stored = sessionStorage.getItem('pna');
       if (stored) {
         const parsed = JSON.parse(stored);
@@ -55,7 +57,7 @@ export class DashboardComponent implements OnInit {
 
       const data = await Promise.all([
         this.userHttpClient.profile(),
-        this.userHttpClient.getMyAreas(),
+        //this.userHttpClient.getMyAreas(),
         this.userHttpClient.getNotifications()
       ]);
 

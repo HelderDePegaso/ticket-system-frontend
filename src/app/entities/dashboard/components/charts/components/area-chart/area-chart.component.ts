@@ -19,11 +19,11 @@ export class AreaChartComponent {
   appStateService = inject(AppStateService)
 
   area$ = combineLatest([
-    this.appStateService.selectedAreaUuid$, 
+    this.appStateService.selectedArea$, 
     this.userContextService.areas$
   ]).pipe(
-    map(([uuid, areas]) => {
-      return areas.find(area => area.uuid === uuid) || null
+    map(([area]) => {
+      return area
     })
   )
 

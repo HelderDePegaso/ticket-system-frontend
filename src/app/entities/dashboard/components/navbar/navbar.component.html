@@ -125,21 +125,22 @@
         <p>See our dashboard options.</p>
       </div>
       <div class="float-end mt-4">
-        <button class="btn btn-link text-dark p-0 fixed-plugin-close-button"  (click)="toggleFixedPlugin()">
+        <button class="btn btn-link text-dark p-0 fixed-plugin-close-button" (click)="toggleFixedPlugin()">
           <i class="material-symbols-rounded">clear</i>
         </button>
       </div>
       <!-- End Toggle Button -->
     </div>
     <hr class="horizontal dark my-1">
-    <div [style.overflowY]="overlayFixedPlugin ? 'overlay' : 'hidden'" class="card-body pt-sm-3 pt-0"   (mouseover)="doOverlayFixedPlugin()" (mouseout)="undoOverlayFixedPlugin()">
+    <div [style.overflowY]="overlayFixedPlugin ? 'overlay' : 'hidden'" class="card-body pt-sm-3 pt-0"
+      (mouseover)="doOverlayFixedPlugin()" (mouseout)="undoOverlayFixedPlugin()">
       <!-- App Configuration -->
       <div>
         <h6 class="mb-0">Domain and Area</h6>
       </div>
 
       <div>
-      <!--div class="mb-3">
+        <!--div class="mb-3">
         <label for="domainSelect" class="form-label">Domain</label>
         <select class="form-select" id="domainSelect" aria-label="Default select example">
           <option value="1">Domain 1</option>
@@ -147,16 +148,25 @@
           <option value="3">Domain 3</option>
         </select>
       </div-->
-      <div class="mb-3">
-        <label for="areaSelect" class="form-label">Area</label>
-        <select class="form-select" id="areaSelect" aria-label="Default select example"
-        
-          [ngModel] ="selectedAreaUuid"
-          (ngModelChange)="onAreaChange($event)">
-          <option value="general">Nenhum</option>
-          <option *ngFor="let area of (areas$ | async)  ;   trackBy: trackByArea" [value]="area.uuid"> {{ area.name}} </option>
-        </select>
-      </div>
+        <div class="mb-3">
+          <label for="areaSelect" class="form-label">Area</label>
+          <select class="form-select" id="areaSelect" aria-label="Default select example"
+            [ngModel]="selectedAreaFresh()" (ngModelChange)="onAreaChange($event)" [compareWith]="compareByUuid">
+            <option [ngValue]="null">Nenhum</option>
+
+            @if (areasQuery.isLoading()) {
+            <option disabled>Carregando...</option>
+            }
+            @else if (areasQuery.isError()) {
+            <option disabled>Erro ao carregar</option>
+            }
+            @else {
+            <option *ngFor="let area of areas(); trackBy: trackByArea" [ngValue]="area">
+              {{ area.name }}
+            </option>
+            }
+          </select>
+        </div>
       </div>
 
       <!-- Sidebar Backgrounds -->

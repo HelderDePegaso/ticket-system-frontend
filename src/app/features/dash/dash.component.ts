@@ -16,11 +16,17 @@ import { Observable } from 'rxjs';
 export class DashComponent implements OnInit {
 
   appStateService = inject(AppStateService)
-  selectedComponent$: Observable<Type<AreaChartComponent | GeneralChartComponent>> = this.appStateService.selectedAreaUuid$.pipe(
-    map((uuid: any) => {
-      if (!uuid || uuid === "general") return GeneralChartComponent
-      return AreaChartComponent
-    })
+  selectedComponent$: Observable<Type<AreaChartComponent | GeneralChartComponent>> = this.appStateService.selectedArea$.pipe(
+    //map((uuid: any) => {
+    //  if (!uuid || uuid === "general") return GeneralChartComponent
+    //  return AreaChartComponent
+    //})
+    map(
+      (area: any) => {
+        if (!area) return GeneralChartComponent
+        return AreaChartComponent
+      }
+    )
   );
 
 
