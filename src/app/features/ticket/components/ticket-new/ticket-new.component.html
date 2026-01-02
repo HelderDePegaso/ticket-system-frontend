@@ -2,24 +2,33 @@
   <div class="card card-body mx-2 mx-md-2 mt-n6">
     <div class="row gx-4 mb-2">
       <div class="row">
-        <div  class="col-12">
-          <div  class="row slider-row dragging " appHorizontalDragScrollDirective>
-            <div  class="col-md-3 col-3" *ngFor="let area of areas$ | async">
-              <div [id]="'area-' + area.uuid"  class="card " (click)="areaClick(area)" >
-                <div  class="card-header mx-4 mt-1 p-3 text-center">
-                  <div 
-                    class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg"><i
-                       class="material-symbols-rounded opacity-10">account_balance</i></div>
-                </div>
-                <div  class="card-body pt-0 p-3 text-center"> 
-                  <h6  class="text-center mb-0">{{area.abbrev}}</h6><span
-                     class="text-xs">{{area.name }}</span>
-                  <hr  class="horizontal dark my-3">
-                  <h5  class="mb-0 text-sm">As: {{area.function | titlecase}}</h5>
+        <div class="col-12">
+          <div class="row slider-row dragging " appHorizontalDragScrollDirective>
+            @if (areas$.isPending() || areas$.isLoading()) {
+              <div class="col-md3 col-3">
+                <p class="text-sm">Carregando...</p>
+              </div>
+            } @else if (areas$.isSuccess()) {
+              <div class="col-md-3 col-3" *ngFor="let area of areas$.data() ">
+                <div [id]="'area-' + area.uuid" class="card " (click)="areaClick(area)">
+                  <div class="card-header mx-4 mt-1 p-3 text-center">
+                    <div class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg"><i
+                        class="material-symbols-rounded opacity-10">account_balance</i></div>
+                  </div>
+                  <div class="card-body pt-0 p-3 text-center">
+                    <h6 class="text-center mb-0">{{area.abbrev}}</h6><span class="text-xs">{{area.name }}</span>
+                    <hr class="horizontal dark my-3">
+                    <h5 class="mb-0 text-sm">As: {{area.function | titlecase}}</h5>
+                  </div>
                 </div>
               </div>
-            </div>
-            
+            } @else if(areas$.isError()) {
+              <div class="col-md-3 col-3">
+                <p class="text-sm">Erro Ao carregar os dados</p>
+              </div>
+            }
+
+
           </div>
         </div>
       </div>
@@ -34,10 +43,10 @@
               <form [formGroup]="form">
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="input-group input-group-outline mb-3" 
-                    [class.is-filled]="form.get('title')?.value">
+                    <div class="input-group input-group-outline mb-3" [class.is-filled]="form.get('title')?.value">
                       <label for="title" class="form-label">Título</label>
-                      <input formControlName="title" type="text" class="form-control " id="title" name="title" required (focus)="onInputFocus($event)" (focusout)="onInputFocusOut($event)" >
+                      <input formControlName="title" type="text" class="form-control " id="title" name="title" required
+                        (focus)="onInputFocus($event)" (focusout)="onInputFocusOut($event)">
                       <br>
                       <div *ngIf="form.get('title')?.touched && form.get('title')?.invalid" class="error-message-div">
                         Título obrigatório e deve ter ao menos 6 caracteres.
@@ -45,17 +54,20 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="input-group input-group-outline mb-3" [class.is-filled]="form.get('relatedDate')?.value"]>
+                    <div class="input-group input-group-outline mb-3" [class.is-filled]="form.get('relatedDate')?.value">
                       <label for="date" class="form-label">Related Date</label>
-                      <input formControlName="relatedDate" type="date" class="form-control" id="date" name="date" (focus)="onInputFocus($event)" (focusout)="onInputFocusOut($event)">
+                      <input formControlName="relatedDate" type="date" class="form-control" id="date" name="date"
+                        (focus)="onInputFocus($event)" (focusout)="onInputFocusOut($event)">
                     </div>
                   </div>
                 </div>
                 <div class="input-group input-group-outline mb-3" [class.is-filled]="form.get('description')?.value">
                   <label for="description" class="form-label">Descrição</label>
-                  <textarea formControlName="description" class="form-control" id="description" name="description" rows="10" (focus)="onInputFocus($event)" (focusout)="onInputFocusOut($event)"></textarea>
+                  <textarea formControlName="description" class="form-control" id="description" name="description"
+                    rows="10" (focus)="onInputFocus($event)" (focusout)="onInputFocusOut($event)"></textarea>
                   <br>
-                  <div *ngIf="form.get('description')?.touched && form.get('description')?.invalid" class="error-message-div">
+                  <div *ngIf="form.get('description')?.touched && form.get('description')?.invalid"
+                    class="error-message-div">
                     Descrição é obrigatória.
                   </div>
                 </div>

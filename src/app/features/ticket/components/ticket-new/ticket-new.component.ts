@@ -5,6 +5,7 @@ import { AsyncPipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { min } from 'rxjs';
 import { TicketHttpclient } from '../../../../core/http/ticket-httpclient/ticket-httpclient';
 import { UserContextService } from '../../../../core/singleton/user.context.service';
+import { AreaService } from '../../../../shared/services/auxiliar-services/area.service';
 
 @Component({
   selector: 'app-ticket-new',
@@ -25,6 +26,7 @@ export class TicketNewComponent {
 
   ticketHttpClient = inject(TicketHttpclient);
   userContextService = inject(UserContextService);
+  areaService = inject(AreaService);
 
   form = new FormGroup({
     title: new FormControl('' , [Validators.required ,  Validators.minLength(6)]),
@@ -32,9 +34,9 @@ export class TicketNewComponent {
     relatedDate: new FormControl(''),
   })
 
-  areas$ = this.userContextService.areas$
+  areas$ = this.areaService.getAreasForDashboard('this') //this.userContextService.areas$
 
-  selectedArea: {name: string, uuid: string}  |  null = null
+  selectedArea: any |  null = null
 
   constructor(private renderer: Renderer2) { }
 
@@ -71,6 +73,8 @@ export class TicketNewComponent {
     this.selectedArea = area
   }
 
+  
+
   onInputFocus(event: FocusEvent) {
     console.log(event);
     (event.target as HTMLElement)?.parentElement?.classList.add('is-focused'); 
@@ -88,7 +92,10 @@ export class TicketNewComponent {
 
   onSubmit() {
     if (this.form.invalid) return;
-    if (this.selectedArea === null) alert('Selecione uma area');
+    if (this.selectedArea == null) {
+      alert('Selecione uma area');
+      return
+    }
     debugger
     const data = {
       ...this.form.value,
@@ -98,7 +105,8 @@ export class TicketNewComponent {
     
     this.ticketHttpClient.createTicket(data).then(() => { 
       alert('Ticket criado com sucesso');
-    }).catch(() => {
+    }).catch((error: any) => {
+      console.error(error);
       alert('Erro ao criar ticket');
     }).finally(() => {
       this.form.reset();
